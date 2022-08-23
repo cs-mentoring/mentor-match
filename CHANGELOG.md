@@ -9,7 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Users can now edit the weightings, but only for specific attributes, and for the pre-existing calculation
 
-[2.5.0]
+## [2.5.1] - unreleased
+
+### Changed
+The matching workflow now flows into the notifications workflow. However, users cannot download their matches
+
+
+## [2.5.0] - 2022-08-22
 
 ### Added
 This release adds the notification workflow, using GOV.UK Notify. Getting from the "matching" to the "notification"
