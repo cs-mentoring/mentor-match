@@ -4,6 +4,7 @@
 .vscode/settings.json
 *.pyc
 /.python-version
+/.jekyll-cache/Jekyll/Cache/
 # Created by https://www.toptal.com/developers/gitignore/api/terraform
 # Edit at https://www.toptal.com/developers/gitignore?templates=terraform
 
