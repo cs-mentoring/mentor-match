@@ -115,6 +115,9 @@ Werkzeug = "^2.2.2"
 wsproto = "^1.2.0"
 celery = "^5.2.7"
 mentor-match = "^7.0.1"
+constructs = "^10.1.136"
+aws-cdk-lib = "^2.47.0"
+aws-cdk-aws-lambda-python-alpha = "^2.47.0a0"
 
 [tool.poetry.dev-dependencies]
 
@@ -124,6 +127,13 @@ pytest-bdd = "^6.0.1"
 pytest-cov = "^4.0.0"
 pytest-forked = "^1.4.0"
 pytest-xdist = "^2.5.0"
+moto = "^4.0.8"
+
+
+[tool.poetry.group.aws.dependencies]
+aws-cdk-lib = "^2.47.0"
+aws-cdk-aws-lambda-python-alpha = "^2.47.0a0"
+boto3 = "^1.24.96"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -29,7 +29,7 @@ COPY ./poetry.lock ./pyproject.toml /
 RUN poetry install --only main
 
 COPY mentor_match_web/app /app
-COPY ./.bumpversion.cfg /.bumpversion.cfg
+COPY mentor_match_web/.bumpversion.cfg /.bumpversion.cfg
 
 FROM python-app AS web
 CMD ["poetry", "run", "gunicorn", "app:create_app()"]
