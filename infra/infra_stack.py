@@ -7,6 +7,7 @@ from aws_cdk import (
     aws_stepfunctions_tasks as sfn_tasks,
     aws_s3 as s3,
     aws_apigateway as api_gw,
+    RemovalPolicy,
 )
 from aws_cdk.aws_lambda import Runtime
 from aws_cdk.aws_s3 import Bucket, BlockPublicAccess
@@ -22,13 +23,16 @@ class DataStore(Construct):
         super(DataStore, self).__init__(scope, id)
 
         self._bucket = s3.Bucket(
-            scope=self, id="DataBucket", block_public_access=BlockPublicAccess.BLOCK_ALL
+            scope=self,
+            id="DataBucket",
+            block_public_access=BlockPublicAccess.BLOCK_ALL,
+            removal_policy=RemovalPolicy.DESTROY,
         )
 
         s3_function_partial = functools.partial(
             lambda_python.PythonFunction,
             scope=self,
-            entry="./app",
+            entry="./infra/app",
             runtime=Runtime.PYTHON_3_9,
             index="s3_api_gw.py",
             environment={"S3_BUCKET_NAME": self.bucket.bucket_name},
@@ -83,7 +87,7 @@ class ProcessData(Construct):
         dependencies = lambda_python.PythonLayerVersion(
             scope=self,
             id="MatchProcessingDependencies",
-            entry="./python",
+            entry="./infra/python",
             compatible_runtimes=[Runtime.PYTHON_3_9],
         )
 
@@ -91,7 +95,7 @@ class ProcessData(Construct):
             lambda_python.PythonFunction,
             scope=self,
             id="ProcessDataFunction",
-            entry="./app",
+            entry="./infra/app",
             runtime=Runtime.PYTHON_3_9,
             index="index.py",
             layers=[dependencies],
