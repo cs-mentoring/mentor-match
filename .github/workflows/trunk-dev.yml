@@ -44,6 +44,8 @@ jobs:
           echo "::set-output name=image_commit_tag::$(git rev-parse --short HEAD)"
 
   test-and-push:
+    permissions:
+      issues: write
     needs:
       - get-commit-tag
     env:
@@ -70,8 +72,7 @@ jobs:
 
       - name: Comment coverage
         uses: coroo/pytest-coverage-commentator@v1.0.2
-        permissions:
-          issues: write
+
 
       - name: Stop docker
         if: ${{ env.ACT }}
