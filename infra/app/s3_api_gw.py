@@ -1,8 +1,6 @@
 import json
-
-import uuid
-
 import os
+import uuid
 
 import boto3
 
@@ -27,6 +25,10 @@ def s3_gateway_get(event, context):
 
 
 def s3_gateway_post(event, context):
+    """
+    This method receives data from the frontend and saves it to the S3 bucket. It then starts the State Machine, passing
+     the path to the data and the kind of approach to be taken
+    """
     data_uuid = uuid.uuid4()
     s3 = boto3.resource("s3")
     new_file = s3.Object(f"{data_uuid}/0.json")
